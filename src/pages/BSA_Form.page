@@ -1,0 +1,44 @@
+<apex:page >
+    <div class="ng-app">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <script>
+            function bowlFormController($scope){
+                $scope.greeting     = {text: 'Hello'};
+
+                $scope.houseHold    =   {text: ''};
+                $scope.phoneNr      =   {text: ''};
+                $scope.email        =   {text: ''};
+                $scope.mothers      =   [{text: ''}];
+                $scope.boys         =   [{name: '', grade: ''}, {name: '', grade: ''}];
+                $scope.relFamilies  =   [{name: ''}];
+            }
+        </script>
+
+        <div ng-controller='bowlFormController'>
+            <apex:pageBlock title="Bowling Application Form">
+                <p>{{greeting.text}}, World!</p>
+
+                <br />
+                <label class="labelCol">Mother/Woman's Name (relation to boy/s):</label>
+                <input type="text" ng-model="houseHold.text" size="40"/>
+
+                <br />
+                <label class="labelCol">Phone #:</label>
+                <input type="tel" ng-model="houseHold.phoneNr" />
+                <label class="labelCol">Email:</label>
+                <input type="email" ng-model="houseHold.email" size="40"/>
+
+                <div ng-repeat="mother in mothers">
+                </div>
+        
+
+        <div>
+            <label>Name:</label>
+            <input type="text" ng-model="yourName" placeholder="Enter a name here" />
+            <hr />
+            <h1>Hello {{yourName}}!</h1>
+        </div>
+            </apex:pageBlock>
+        </div>
+    </div>
+</apex:page>

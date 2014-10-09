@@ -1,0 +1,57 @@
+<!--
+*   @Page : BSA_LanesAssignment.page
+*
+*   @Author         :   Gonzalo Abruña
+*   @Created        :   21 April 2014
+*   @Description    :   Visualforce page that will show Lanes assigned to Campaigns.
+*						 http://www.topcoder.com/challenge*details/30042041/?type=&nocache=true#.U1Ptcv3lTeE
+*
+* 
+	   ***************************************************************************************************************************                              
+*      Modification Log     : 
+*      ****************************************************************************************************************************
+*      Developer             Date                Description
+*      ****************************************************************************************************************************   
+*      Gonzalo Abruña        21 April 2014        Creation
+*
+-->
+<apex:page controller="BSA_LanesAssignment_Controller">
+	<apex:form id="formPage">
+		<apex:pageMessages />
+		<apex:pageBlock id="pageBlock">
+			<apex:pageBlockButtons id="pbButtons">
+				<apex:commandButton id="recalculateButton" value="(Re)Calculate Lanes" action="{!reorganizeLanes}" rerender="formPage" status="loadStatus"/>
+				<apex:actionStatus id="loadStatus">
+                	<apex:facet name="start"><apex:image style="height:15px;width:15px;" value="/img/loading32.gif"/></apex:facet>
+                </apex:actionStatus>
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection columns="3">
+				<apex:repeat value="{!orderedLanes}" var="laneNumber">
+					<apex:outputPanel title="Bowling Lane {!laneNumber}">
+						<hr />
+						<h1>Lane Number {!laneNumber}</h1>
+						<br />
+						<h2>{!mapNrParticipantsInLane[laneNumber]} participants</h2>
+						<br />
+						<apex:repeat value="{!mapCampaignsPerLane[laneNumber]}" var="currentCampaign">
+							<apex:outputLink value="/{!currentCampaign.Id}">
+								{!currentCampaign.Name} ({!currentCampaign.MSB_of_Members__c} players)
+							</apex:outputLink>
+							<br />
+							<apex:repeat value="{!mapMembersPerCampaign[currentCampaign.Id]}" var="participant">
+								<apex:outputPanel styleClass="leftMargin">
+									<apex:outputLink value="/{!participant.contactId}">
+										{!participant.contact.Name}
+									</apex:outputLink>
+									Grade: {!participant.MSB_Grade__c}
+								</apex:outputPanel>
+								<br />
+							</apex:repeat>
+						</apex:repeat>
+						<hr />
+					</apex:outputPanel>
+				</apex:repeat>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

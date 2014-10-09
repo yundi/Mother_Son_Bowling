@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>BSA_ParentCampaign_Name</fullName>
+        <categories>BSA</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BSA_ParentCampaign_Name</shortDescription>
+        <value>Mother-Son Bowling 2014</value>
+    </labels>
+</CustomLabels>
